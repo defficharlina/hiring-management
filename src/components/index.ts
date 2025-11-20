@@ -1,6 +1,11 @@
 export { default as User } from './User';
 export { default as Navbar } from './Navbar';
-export { default as CategoryList } from './CategoryList';
-export { default as CategoryForm } from './CategoryForm';
 export { default as LoginForm } from './LoginForm';
-export { default as RegisterForm } from './RegisterForm';
+export { default as JobList } from './JobList';
+export { default as JobCard } from './JobCard';
+export { default as JobDetail } from './JobDetail';
+export { default as JobApplicationForm } from './JobApplicationForm';
+export { default as AdminJobList } from './AdminJobList';
+export { default as ManageCandidate } from './ManageCandidate';
+export { default as CreateJobModal } from './CreateJobModal';
+export { default as WebcamCapture } from './WebcamCapture';

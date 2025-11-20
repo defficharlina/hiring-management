@@ -1,18 +1,49 @@
-import { LoginForm as LoginFormProps, LoginResponse } from "../../types"
+import { useState } from "react"
+import { LoginForm as LoginFormProps } from "../../types"
 import { LoginForm } from "../../components"
+import { authService } from "../../services/authService"
+import { message } from "antd"
 
 const Login = () => {
+    const [loading, setLoading] = useState(false)
 
     const onSubmit = async (data: LoginFormProps) => {
-        const fetching = await fetch('https://mock-api.arikmpt.com/api/user/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        const response: LoginResponse = await fetching.json()
-        if(response) {
-            localStorage.setItem('authToken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNzFlNjY5LTM4ZGYtNGRkNy04NDYwLTc4ODc2ZmM0NTNjOSIsImlhdCI6MTY5NTg3MTQ1OSwiZXhwIjoxNjk1ODkzMDU5fQ.H2l_xxXJwrxJJt6ubGBXt-6wBkxMr63GgMiv4PMh79o')
-            //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNzFlNjY5LTM4ZGYtNGRkNy04NDYwLTc4ODc2ZmM0NTNjOSIsImlhdCI6MTY5NTQyMjY5NywiZXhwIjoxNjk1NDQ0Mjk3fQ.pzYKTHSg0zTLfMHQmyVXGp1bvDC3l-a4Aj8ERbxhR30'
+        setLoading(true)
+        
+        try {
+            // Login menggunakan Supabase
+            const result = await authService.login({
+                email: data.username,
+                password: data.password
+            })
+
+            // Simpan data ke localStorage
+            localStorage.setItem('token', result.session?.access_token || '')
+            localStorage.setItem('userRole', result.role)
+            localStorage.setItem('username', result.user?.email || '')
+            
+            console.log("Login berhasil:", result.role)
+            message.success(`Welcome ${result.fullName || result.user?.email}!`)
+            
+            // Redirect berdasarkan role
+            if (result.role === 'admin') {
+                window.location.replace("/admin/jobs")
+            } else {
+                window.location.replace("/jobs")
+            }
+        } catch (error: any) {
+            console.error('Login error:', error)
+            
+            // Handle specific error messages
+            if (error.message?.includes('Invalid login credentials')) {
+                message.error('Email atau password salah!')
+            } else if (error.message?.includes('Email not confirmed')) {
+                message.error('Silakan konfirmasi email Anda terlebih dahulu')
+            } else {
+                message.error('Login gagal. Silakan coba lagi.')
+            }
+        } finally {
+            setLoading(false)
         }
     }
 

@@ -1,0 +1,212 @@
+.admin-job-list-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.admin-job-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.admin-job-list-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.admin-job-list-search {
+  margin-bottom: 24px;
+}
+
+.admin-job-list-search .ant-input-search {
+  max-width: 400px;
+}
+
+.admin-job-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-job-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.admin-job-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.admin-job-card-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex: 1;
+}
+
+.admin-job-card-info {
+  flex: 1;
+}
+
+.admin-job-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.admin-job-card-status {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.admin-job-card-status.active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.admin-job-card-status.inactive {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.admin-job-card-status.draft {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.admin-job-card-date {
+  font-size: 13px;
+  color: #666;
+}
+
+.admin-job-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.admin-job-card-salary {
+  font-size: 14px;
+  color: #666;
+}
+
+.admin-job-card-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.admin-job-card-manage-btn {
+  background: #00b4d8;
+  border-color: #00b4d8;
+  color: white;
+  border-radius: 6px;
+  padding: 8px 24px;
+  height: auto;
+  font-weight: 500;
+}
+
+.admin-job-card-manage-btn:hover {
+  background: #0096c7;
+  border-color: #0096c7;
+}
+
+.admin-job-list-sidebar {
+  position: fixed;
+  right: 24px;
+  top: 100px;
+  width: 320px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 24px;
+  color: white;
+}
+
+.admin-job-list-sidebar-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.admin-job-list-sidebar-subtitle {
+  font-size: 14px;
+  color: #999;
+  margin: 0 0 20px 0;
+}
+
+.admin-job-list-create-btn {
+  width: 100%;
+  background: #00b4d8;
+  border-color: #00b4d8;
+  color: white;
+  border-radius: 6px;
+  height: 44px;
+  font-weight: 600;
+}
+
+.admin-job-list-create-btn:hover {
+  background: #0096c7;
+  border-color: #0096c7;
+}
+
+.admin-job-list-success {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.admin-job-list-success-icon {
+  color: #00b4d8;
+  font-size: 20px;
+}
+
+.admin-job-list-success-text {
+  color: #333;
+  font-size: 14px;
+  margin: 0;
+}
+
+.admin-job-list-success-close {
+  margin-left: 12px;
+  cursor: pointer;
+  color: #999;
+  font-size: 16px;
+}
+
+.admin-job-list-success-close:hover {
+  color: #333;
+}

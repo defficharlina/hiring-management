@@ -1,7 +1,7 @@
 import AppProvider from './Provider/AppProvider'
 // import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Home, Category, CategoryEdit, CategoryNew, Profile, Login, Register } from './pages'
+import { Home, Profile, Login, JobList, AdminJobList, ManageCandidate } from './pages'
 import { PublicLayout, AnotherLayout } from './layouts'
 
 function App() {
@@ -14,10 +14,6 @@ function App() {
           path: '/',
           element: <Login />
         },
-        {
-          path: '/register',
-          element: <Register />
-        }
       ]
     },
     {
@@ -28,24 +24,20 @@ function App() {
           element: <Home />
         },
         {
-          path: '/category',
-          element: <Category />
-        },
-        /*{
-          path: '/product/:id',
-          element: <ProductDetail />
-        },*/
-        {
-          path: '/category/new',
-          element: <CategoryNew />
-        },
-        {
-          path: '/category/edit/:id',
-          element: <CategoryEdit />
-        },
-        {
           path: '/profile',
           element: <Profile />
+        },
+        {
+          path: '/jobs',
+          element: <JobList />
+        },
+        {
+          path: '/admin/jobs',
+          element: <AdminJobList />
+        },
+        {
+          path: '/admin/jobs/:jobId',
+          element: <ManageCandidate />
         }
       ]
     }

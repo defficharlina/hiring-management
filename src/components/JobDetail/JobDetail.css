@@ -1,0 +1,157 @@
+.job-detail-container {
+  max-width: 900px;
+}
+
+.job-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.job-detail-left {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+}
+
+.job-detail-logo {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.job-detail-info {
+  flex: 1;
+}
+
+.job-detail-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.job-detail-company {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+.job-detail-apply-btn {
+  height: 40px;
+  padding: 0 32px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: #fdb714;
+  border-color: #fdb714;
+  border-radius: 6px;
+}
+
+.job-detail-apply-btn:hover {
+  background-color: #e5a513;
+  border-color: #e5a513;
+}
+
+.job-detail-meta {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.job-detail-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  font-size: 14px;
+}
+
+.job-detail-meta-icon {
+  color: #999;
+  font-size: 16px;
+}
+
+.job-detail-badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.job-detail-badge {
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.job-detail-badge.type {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.job-detail-badge.level {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.job-detail-section {
+  margin-bottom: 32px;
+}
+
+.job-detail-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 16px 0;
+}
+
+.job-detail-description {
+  color: #666;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.job-detail-list {
+  margin: 0;
+  padding-left: 24px;
+  color: #666;
+  font-size: 15px;
+}
+
+.job-detail-list li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.job-detail-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #999;
+  text-align: center;
+}
+
+.job-detail-empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  color: #ddd;
+}
+
+.job-detail-empty-text {
+  font-size: 16px;
+  margin: 0;
+}

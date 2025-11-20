@@ -46,8 +46,6 @@ const CategoryEdit = () => {
                 },
                 body: JSON.stringify({ ...values, id: id }),
             })
-            //await fetching.json()
-            //navigate('/category')
             if (fetching.ok) {
                 navigate('/category')
             } else {

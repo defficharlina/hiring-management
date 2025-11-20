@@ -1,0 +1,178 @@
+.create-job-modal .ant-modal-content {
+  border-radius: 12px;
+}
+
+.create-job-modal .ant-modal-header {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 20px 24px;
+}
+
+.create-job-modal .ant-modal-body {
+  padding: 24px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.create-job-modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.create-job-form-item {
+  margin-bottom: 20px;
+}
+
+.create-job-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.create-job-label .required {
+  color: #ff4d4f;
+  margin-left: 4px;
+}
+
+.create-job-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.create-job-input:focus {
+  outline: none;
+  border-color: #00b4d8;
+  box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.1);
+}
+
+.create-job-input::placeholder {
+  color: #bfbfbf;
+}
+
+.create-job-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+  min-height: 100px;
+  resize: vertical;
+}
+
+.create-job-textarea:focus {
+  outline: none;
+  border-color: #00b4d8;
+  box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.1);
+}
+
+.create-job-select {
+  width: 100%;
+}
+
+.create-job-salary-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.create-job-salary-input {
+  width: 100%;
+}
+
+.create-job-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 24px 0 16px 0;
+}
+
+.create-job-profile-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.create-job-profile-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.create-job-profile-field:last-child {
+  border-bottom: none;
+}
+
+.create-job-profile-field-name {
+  font-size: 14px;
+  color: #666;
+}
+
+.create-job-profile-field-options {
+  display: flex;
+  gap: 8px;
+}
+
+.create-job-profile-option {
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #d9d9d9;
+  background: white;
+}
+
+.create-job-profile-option.active {
+  background: #00b4d8;
+  color: white;
+  border-color: #00b4d8;
+}
+
+.create-job-profile-option.mandatory {
+  background: #e6f7ff;
+  color: #00b4d8;
+  border-color: #00b4d8;
+}
+
+.create-job-profile-option.optional {
+  background: #f5f5f5;
+  color: #666;
+  border-color: #d9d9d9;
+}
+
+.create-job-profile-option.off {
+  background: #fafafa;
+  color: #999;
+  border-color: #e0e0e0;
+}
+
+.create-job-submit-btn {
+  width: 100%;
+  height: 48px;
+  background: #00b4d8;
+  border-color: #00b4d8;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 24px;
+}
+
+.create-job-submit-btn:hover {
+  background: #0096c7;
+  border-color: #0096c7;
+}
+
+.create-job-submit-btn:disabled {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+  cursor: not-allowed;
+}

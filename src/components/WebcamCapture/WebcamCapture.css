@@ -1,0 +1,219 @@
+.webcam-capture-modal .ant-modal-content {
+  border-radius: 12px;
+}
+
+.webcam-capture-modal .ant-modal-body {
+  padding: 24px;
+}
+
+.webcam-capture-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.webcam-capture-title-section {
+  flex: 1;
+}
+
+.webcam-capture-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.webcam-capture-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.webcam-capture-close {
+  cursor: pointer;
+  font-size: 24px;
+  color: #999;
+  transition: color 0.2s;
+}
+
+.webcam-capture-close:hover {
+  color: #333;
+}
+
+.webcam-capture-video-container {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  margin-bottom: 16px;
+}
+
+.webcam-capture-video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.webcam-capture-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.webcam-capture-instruction {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.webcam-capture-poses {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.webcam-capture-pose {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.webcam-capture-pose-icon {
+  width: 80px;
+  height: 80px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  border: 3px solid #e0e0e0;
+  color: #999;
+}
+
+.webcam-capture-pose-icon.active {
+  background: #fff3e0;
+  border: 3px solid #fdb714;
+  animation: pulse 1s infinite;
+  color: #333;
+}
+
+.webcam-capture-pose-icon.completed {
+  background: #e8f5e9;
+  border: 3px solid #4caf50;
+  color: #2e7d32;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.webcam-capture-arrow {
+  font-size: 24px;
+  color: #999;
+}
+
+.webcam-capture-status {
+  text-align: center;
+  padding: 8px 16px;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.webcam-capture-status.waiting {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.webcam-capture-status.detecting {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.webcam-capture-status.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.webcam-capture-status.countdown {
+  background: #00b4d8;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+.webcam-capture-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.webcam-capture-btn {
+  flex: 1;
+  height: 44px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.webcam-capture-btn-cancel {
+  background: white;
+  border: 1px solid #d9d9d9;
+  color: #666;
+}
+
+.webcam-capture-btn-cancel:hover {
+  border-color: #00b4d8;
+  color: #00b4d8;
+}
+
+.webcam-capture-btn-capture {
+  background: #00b4d8;
+  border-color: #00b4d8;
+  color: white;
+}
+
+.webcam-capture-btn-capture:hover {
+  background: #0096c7;
+  border-color: #0096c7;
+}
+
+.webcam-capture-btn-capture:disabled {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+  cursor: not-allowed;
+}
+
+.webcam-capture-error {
+  text-align: center;
+  padding: 40px 20px;
+  color: #f44336;
+}
+
+.webcam-capture-error-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.webcam-capture-error-text {
+  font-size: 16px;
+  margin: 0;
+}

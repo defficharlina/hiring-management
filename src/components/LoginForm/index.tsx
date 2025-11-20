@@ -1,8 +1,10 @@
-import { Button, Card, Input, Typography } from "antd"
+import { Button, Input, Typography } from "antd"
 import { useFormik } from "formik"
 import { LoginForm as LoginFormProps } from "../../types"
 import { initialValues, validationSchema } from "./loginFormSchema"
-import { useNavigate } from 'react-router-dom'
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons'
+import { useState } from 'react'
+import './LoginForm.css'
 
 interface Props {
     onSubmit: (values: LoginFormProps) => void
@@ -10,7 +12,7 @@ interface Props {
 
 const LoginForm = ({ onSubmit } : Props) => {
 
-    const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit = (values: LoginFormProps) => {
         onSubmit(values)
@@ -23,35 +25,94 @@ const LoginForm = ({ onSubmit } : Props) => {
     })
 
     return (
-        <Card title={"Login Page"} bordered style={{ width:350}}>
-            <form onSubmit={formMik.handleSubmit}>
-                <div>
-                    <Typography.Paragraph>{'Email'}</Typography.Paragraph>
-                    <Input name={'email'}
-                        value={formMik.values.email} 
-                        onChange={formMik.handleChange('email')}
-                        status={formMik.errors.email && 'error'}
-                    />
-                    {formMik.errors.email && (
-                        <Typography.Paragraph>{formMik.errors.email}</Typography.Paragraph>
-                    )}
+        <div className="login-container">
+            <div className="login-wrapper">
+                {/* Logo */}
+                <div className="login-logo">
+                    <div className="login-logo-content">
+                        <div className="login-logo-icon">
+                            {'</>'}
+                        </div>
+                        <div>
+                            <div className="login-logo-text-main">
+                                Rakamin
+                            </div>
+                            <div className="login-logo-text-sub">
+                                Academy
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <Typography.Paragraph>{'Password'}</Typography.Paragraph>
-                    <Input name={'password'}
-                        value={formMik.values.password} 
-                        onChange={formMik.handleChange('password')}
-                        status={formMik.errors.password && 'error'}
-                        type={'password'}
-                    />
-                    {formMik.errors.password && (
-                        <Typography.Paragraph>{formMik.errors.password}</Typography.Paragraph>
-                    )}
+
+                {/* Form Card */}
+                <div className="login-card">
+                    <Typography.Title level={3} className="login-title">
+                        Masuk ke Rakamin
+                    </Typography.Title>
+
+                    <form onSubmit={formMik.handleSubmit}>
+                        <div className="login-form-item">
+                            <Typography.Text className="login-label">
+                                Alamat email
+                            </Typography.Text>
+                            <Input 
+                                name={'username'}
+                                placeholder="Masukan email"
+                                value={formMik.values.username} 
+                                onChange={formMik.handleChange('username')}
+                                status={formMik.errors.username && 'error'}
+                                size="large"
+                                className="login-input"
+                            />
+                            {formMik.errors.username && (
+                                <Typography.Text type="danger" className="login-error">
+                                    {formMik.errors.username}
+                                </Typography.Text>
+                            )}
+                        </div>
+
+                        <div className="login-form-item">
+                            <Typography.Text className="login-label">
+                                Kata sandi
+                            </Typography.Text>
+                            <Input 
+                                name={'password'}
+                                placeholder="Masukan kata sandi"
+                                value={formMik.values.password} 
+                                onChange={formMik.handleChange('password')}
+                                status={formMik.errors.password && 'error'}
+                                type={showPassword ? 'text' : 'password'}
+                                size="large"
+                                className="login-input"
+                                suffix={
+                                    <span 
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="login-password-toggle"
+                                    >
+                                        {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+                                    </span>
+                                }
+                            />
+                            {formMik.errors.password && (
+                                <Typography.Text type="danger" className="login-error">
+                                    {formMik.errors.password}
+                                </Typography.Text>
+                            )}
+                        </div>
+
+                        <Button 
+                            type={'primary'} 
+                            htmlType="submit"
+                            size="large"
+                            block
+                            className="login-button"
+                        >
+                            Masuk
+                        </Button>
+                    </form>
                 </div>
-                <Button type={'primary'} onClick={() => navigate('/category')}>Submit</Button>
-                <Button type={'primary'} onClick={() => navigate('/register')}>Register</Button>
-            </form>
-        </Card>
+            </div>
+        </div>
     )
 }
 
