@@ -55,6 +55,7 @@ export const authService = {
                     email: signUpData.email,
                     role: signUpData.role || 'user',
                     full_name: signUpData.fullName,
+                    password_hash: 'managed_by_supabase_auth', // Dummy value karena password dikelola oleh Supabase Auth
                 });
 
             if (insertError) throw insertError;

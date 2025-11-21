@@ -1,7 +1,7 @@
 import AppProvider from './Provider/AppProvider'
 // import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Home, Profile, Login, JobList, AdminJobList, ManageCandidate } from './pages'
+import { Home, Login, JobList, AdminJobList, ManageCandidate } from './pages'
 import { PublicLayout, AnotherLayout } from './layouts'
 
 function App() {
@@ -22,10 +22,6 @@ function App() {
         {
           path: '/home',
           element: <Home />
-        },
-        {
-          path: '/profile',
-          element: <Profile />
         },
         {
           path: '/jobs',

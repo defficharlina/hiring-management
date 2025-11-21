@@ -1,5 +1,5 @@
 -- ============================================
--- RAKAMIN JOB PORTAL DATABASE SCHEMA
+-- JOB PORTAL DATABASE SCHEMA
 -- ============================================
 
 -- Enable UUID extension
@@ -24,7 +24,7 @@ CREATE TABLE users (
 CREATE TABLE jobs (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     title VARCHAR(255) NOT NULL,
-    company VARCHAR(255) NOT NULL DEFAULT 'Rakamin',
+    company VARCHAR(255) NOT NULL DEFAULT 'Company',
     location VARCHAR(255) NOT NULL,
     salary_min INTEGER NOT NULL,
     salary_max INTEGER NOT NULL,
@@ -163,7 +163,7 @@ INSERT INTO jobs (
 ) VALUES
 (
     'Frontend Developer',
-    'Rakamin',
+    'Company',
     'Jakarta',
     7000000,
     8000000,

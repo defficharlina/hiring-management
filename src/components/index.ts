@@ -1,5 +1,6 @@
 export { default as User } from './User';
 export { default as Navbar } from './Navbar';
+export { default as Footer } from './Footer';
 export { default as LoginForm } from './LoginForm';
 export { default as JobList } from './JobList';
 export { default as JobCard } from './JobCard';

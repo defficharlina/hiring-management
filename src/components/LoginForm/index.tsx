@@ -35,7 +35,7 @@ const LoginForm = ({ onSubmit } : Props) => {
                         </div>
                         <div>
                             <div className="login-logo-text-main">
-                                Rakamin
+                                Job Portal
                             </div>
                             <div className="login-logo-text-sub">
                                 Academy
@@ -47,7 +47,7 @@ const LoginForm = ({ onSubmit } : Props) => {
                 {/* Form Card */}
                 <div className="login-card">
                     <Typography.Title level={3} className="login-title">
-                        Masuk ke Rakamin
+                        Masuk ke Job Portal
                     </Typography.Title>
 
                     <form onSubmit={formMik.handleSubmit}>

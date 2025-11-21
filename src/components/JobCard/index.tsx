@@ -10,7 +10,7 @@ interface Props {
 
 const JobCard = ({ job, isActive, onClick }: Props) => {
     const formatSalary = (min: number, max: number) => {
-        return `Rp. ${(min / 1000000).toFixed(0)} - ${(max / 1000000).toFixed(0)}`;
+        return `Rp ${(min / 1000000).toFixed(1)} - ${(max / 1000000).toFixed(1)} juta`;
     };
 
     return (

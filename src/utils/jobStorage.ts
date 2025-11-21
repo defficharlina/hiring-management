@@ -21,7 +21,7 @@ export interface JobData {
     profileFields?: any;
 }
 
-const JOBS_STORAGE_KEY = 'rakamin_jobs';
+const JOBS_STORAGE_KEY = 'job_portal_jobs';
 
 export const getJobs = (): JobData[] => {
     const jobsJson = localStorage.getItem(JOBS_STORAGE_KEY);

@@ -4,9 +4,9 @@ export interface CreateJobData {
     title: string;
     company?: string;
     location: string;
-    salaryMin: number;
-    salaryMax: number;
-    jobType?: string;
+    salary_min: number;
+    salary_max: number;
+    job_type?: string;
     level?: string;
     description?: string;
     about?: string;
@@ -14,8 +14,8 @@ export interface CreateJobData {
     tools?: string[];
     competency?: string[];
     status?: 'active' | 'inactive' | 'draft';
-    candidatesNeeded?: number;
-    profileFields?: any;
+    candidates_needed?: number;
+    profile_fields?: any;
 }
 
 export const jobService = {
@@ -64,7 +64,7 @@ export const jobService = {
             .from('jobs')
             .insert({
                 ...jobData,
-                company: jobData.company || 'Rakamin',
+                company: jobData.company || 'Company',
                 status: jobData.status || 'active',
                 created_by: user.id,
             })

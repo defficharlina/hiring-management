@@ -1,14 +1,16 @@
 import { Outlet } from "react-router-dom"
-import { Navbar } from '../../components';
+import { Navbar, Footer } from '../../components';
+import './AnotherLayout.css';
 
 const AnotherLayout = () => {
 
     return (
-        <div>
-            {/*<div>Another Layout</div>*/}
+        <div className="layout-wrapper">
             <Navbar />
-            <Outlet/>
-            <div>Footer</div>
+            <main className="layout-content">
+                <Outlet/>
+            </main>
+            <Footer />
         </div>
     )
 }

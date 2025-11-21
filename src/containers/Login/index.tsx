@@ -22,15 +22,11 @@ const Login = () => {
             localStorage.setItem('userRole', result.role)
             localStorage.setItem('username', result.user?.email || '')
             
-            console.log("Login berhasil:", result.role)
+            console.log("Login berhasil, role:", result.role)
             message.success(`Welcome ${result.fullName || result.user?.email}!`)
             
-            // Redirect berdasarkan role
-            if (result.role === 'admin') {
-                window.location.replace("/admin/jobs")
-            } else {
-                window.location.replace("/jobs")
-            }
+            // Redirect ke home untuk semua user
+            window.location.replace("/home")
         } catch (error: any) {
             console.error('Login error:', error)
             

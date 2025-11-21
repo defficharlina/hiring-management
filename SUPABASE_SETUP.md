@@ -1,4 +1,4 @@
-# Supabase Setup Guide untuk Rakamin Job Portal
+# Supabase Setup Guide untuk Job Portal
 
 ## Prerequisites
 - Akun Supabase (gratis di https://supabase.com)

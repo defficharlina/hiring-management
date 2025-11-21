@@ -73,11 +73,11 @@ const AdminJobList = () => {
             // Create job di Supabase
             await jobService.createJob({
                 title: data.jobName,
-                company: 'Rakamin',
+                company: 'Company',
                 location: 'Jakarta',
-                salaryMin: data.minSalary,
-                salaryMax: data.maxSalary,
-                jobType: data.jobType,
+                salary_min: data.minSalary,
+                salary_max: data.maxSalary,
+                job_type: data.jobType,
                 level: 'Associate (0 - 3 years)',
                 description: data.jobDescription,
                 about: data.jobDescription,
@@ -85,8 +85,8 @@ const AdminJobList = () => {
                 tools: [],
                 competency: [],
                 status: 'active',
-                candidatesNeeded: data.candidatesNeeded,
-                profileFields: data.profileFields
+                candidates_needed: data.candidatesNeeded,
+                profile_fields: data.profileFields
             });
 
             // Reload jobs

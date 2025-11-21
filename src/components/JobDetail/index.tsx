@@ -19,7 +19,7 @@ const JobDetail = ({ job, onApply }: Props) => {
     }
 
     const formatSalary = (min: number, max: number) => {
-        return `Rp ${(min / 1000000).toFixed(1)} juta - Rp ${(max / 1000000).toFixed(1)} juta`;
+        return `Rp ${(min / 1000000).toFixed(1)} - ${(max / 1000000).toFixed(1)} juta`;
     };
 
     return (
