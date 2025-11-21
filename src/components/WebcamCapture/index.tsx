@@ -26,6 +26,7 @@ const WebcamCapture = ({ visible, onClose, onCapture }: Props) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const handsRef = useRef<Hands | null>(null);
     const cameraRef = useRef<Camera | null>(null);
+    const detectionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const [currentPose, setCurrentPose] = useState(0);
     const [status, setStatus] = useState<'waiting' | 'detecting' | 'success' | 'countdown'>('waiting');
     const [error, setError] = useState<string>('');
@@ -104,6 +105,10 @@ const WebcamCapture = ({ visible, onClose, onCapture }: Props) => {
             handsRef.current.close();
             handsRef.current = null;
         }
+        if (detectionTimeoutRef.current) {
+            clearTimeout(detectionTimeoutRef.current);
+            detectionTimeoutRef.current = null;
+        }
     };
 
     const onHandsResults = (results: Results) => {
@@ -116,44 +121,41 @@ const WebcamCapture = ({ visible, onClose, onCapture }: Props) => {
         const fingersUp = countFingersUp(landmarks);
         setDetectedFingers(fingersUp);
 
-        // Check if current pose is detected
+        // Check if current pose is detected with debounce
         if (status === 'detecting' && fingersUp === requiredFingers[currentPose]) {
-            // Hold the pose for a moment to confirm
-            setTimeout(() => {
-                if (detectedFingers === requiredFingers[currentPose]) {
+            // Clear previous timeout
+            if (detectionTimeoutRef.current) {
+                clearTimeout(detectionTimeoutRef.current);
+            }
+            
+            // Set new timeout to confirm pose is held for 800ms
+            detectionTimeoutRef.current = setTimeout(() => {
+                if (fingersUp === requiredFingers[currentPose]) {
                     handlePoseDetected();
                 }
-            }, 500);
+            }, 800);
+        } else {
+            // Clear timeout if pose doesn't match
+            if (detectionTimeoutRef.current) {
+                clearTimeout(detectionTimeoutRef.current);
+                detectionTimeoutRef.current = null;
+            }
         }
     };
 
     const countFingersUp = (landmarks: any) => {
+        // Check each finger individually with more lenient thresholds
+        const isIndexUp = landmarks[8].y < landmarks[6].y - 0.02;
+        const isMiddleUp = landmarks[12].y < landmarks[10].y - 0.02;
+        const isRingUp = landmarks[16].y < landmarks[14].y - 0.02;
+        const isPinkyUp = landmarks[20].y < landmarks[18].y - 0.02;
+        
+        // Count extended fingers (excluding thumb for simplicity)
         let count = 0;
-
-        // Thumb (special case - check horizontal distance)
-        if (landmarks[4].x < landmarks[3].x) {
-            count++;
-        }
-
-        // Index finger
-        if (landmarks[8].y < landmarks[6].y) {
-            count++;
-        }
-
-        // Middle finger
-        if (landmarks[12].y < landmarks[10].y) {
-            count++;
-        }
-
-        // Ring finger
-        if (landmarks[16].y < landmarks[14].y) {
-            count++;
-        }
-
-        // Pinky
-        if (landmarks[20].y < landmarks[18].y) {
-            count++;
-        }
+        if (isIndexUp) count++;
+        if (isMiddleUp) count++;
+        if (isRingUp) count++;
+        if (isPinkyUp) count++;
 
         return count;
     };
@@ -162,10 +164,15 @@ const WebcamCapture = ({ visible, onClose, onCapture }: Props) => {
         const nextPose = currentPose + 1;
         
         if (nextPose >= poses.length) {
+            // Semua pose selesai, mulai countdown untuk capture
             setStatus('success');
-            startCountdown();
+            setTimeout(() => {
+                startCountdown();
+            }, 500);
         } else {
+            // Lanjut ke pose berikutnya
             setCurrentPose(nextPose);
+            setStatus('detecting');
         }
     };
 
@@ -220,11 +227,12 @@ const WebcamCapture = ({ visible, onClose, onCapture }: Props) => {
             case 'waiting':
                 return 'Bersiap untuk mengambil foto...';
             case 'detecting':
-                return `Detecting... (${detectedFingers} finger${detectedFingers !== 1 ? 's' : ''} detected - need ${requiredFingers[currentPose]})`;
+                const poseNames = ['1 jari (telunjuk)', '2 jari (telunjuk + tengah)', '3 jari (telunjuk + tengah + manis)'];
+                return `Tunjukkan ${poseNames[currentPose]} - Terdeteksi: ${detectedFingers} jari`;
             case 'success':
-                return 'All poses detected! Preparing to capture...';
+                return 'Semua pose terdeteksi! Bersiap mengambil foto...';
             case 'countdown':
-                return `Capturing in ${countdown}...`;
+                return `Foto akan diambil dalam ${countdown}...`;
             default:
                 return '';
         }
@@ -265,6 +273,20 @@ const WebcamCapture = ({ visible, onClose, onCapture }: Props) => {
                             className="webcam-capture-video"
                         />
                         <canvas ref={canvasRef} style={{ display: 'none' }} />
+                        
+                        {/* Countdown Overlay */}
+                        {status === 'countdown' && countdown > 0 && (
+                            <div className="webcam-countdown-overlay">
+                                <div className="webcam-countdown-number">{countdown}</div>
+                            </div>
+                        )}
+                        
+                        {/* Success Message Overlay */}
+                        {status === 'success' && (
+                            <div className="webcam-success-overlay">
+                                <div className="webcam-success-message">✓ Semua pose terdeteksi!</div>
+                            </div>
+                        )}
                     </div>
 
                     <div className={`webcam-capture-status ${status}`}>
@@ -272,9 +294,8 @@ const WebcamCapture = ({ visible, onClose, onCapture }: Props) => {
                     </div>
 
                     <p className="webcam-capture-instruction">
-                        To take a picture, follow the hand poses in the order shown below. 
-                        Show 1 finger (index finger), then 2 fingers (peace sign), then 3 fingers.
-                        The system will detect each pose and move to the next automatically.
+                        Tunjukkan pose tangan sesuai urutan: 1 jari (telunjuk), 2 jari (telunjuk + tengah), 3 jari (telunjuk + tengah + manis).
+                        Pastikan jari lainnya tertekuk. Sistem akan otomatis mendeteksi dan lanjut ke pose berikutnya.
                     </p>
 
                     <div className="webcam-capture-poses">
