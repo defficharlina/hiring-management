@@ -10,10 +10,12 @@ export default defineConfig({
         manualChunks: {
           'vendor': ['react', 'react-dom', 'react-router-dom'],
           'antd': ['antd'],
-          'mediapipe': ['@mediapipe/hands', '@mediapipe/camera_utils'],
         }
       }
     },
     chunkSizeWarningLimit: 1000,
+  },
+  optimizeDeps: {
+    exclude: ['@mediapipe/hands', '@mediapipe/camera_utils']
   }
 })

@@ -1,8 +1,8 @@
 import { Modal, Button } from 'antd';
 import { CloseOutlined, RightOutlined, WarningOutlined } from '@ant-design/icons';
 import { useEffect, useRef, useState } from 'react';
-import { Hands, Results } from '@mediapipe/hands';
-import { Camera } from '@mediapipe/camera_utils';
+import type { Hands, Results } from '@mediapipe/hands';
+import type { Camera } from '@mediapipe/camera_utils';
 import './WebcamCapture.css';
 
 interface Props {
@@ -41,10 +41,14 @@ const WebcamCapture = ({ visible, onClose, onCapture }: Props) => {
         try {
             if (!videoRef.current) return;
 
+            // Dynamic import MediaPipe modules
+            const { Hands } = await import('@mediapipe/hands');
+            const { Camera } = await import('@mediapipe/camera_utils');
+
             // Initialize MediaPipe Hands
             const hands = new Hands({
                 locateFile: (file) => {
-                    return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+                    return `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4/${file}`;
                 }
             });
 
