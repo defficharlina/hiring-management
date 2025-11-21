@@ -1,0 +1,29 @@
+/* Global Font Styles */
+* {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Override Ant Design default font */
+.ant-btn,
+.ant-input,
+.ant-select,
+.ant-menu,
+.ant-modal,
+.ant-card,
+.ant-typography,
+.ant-form,
+.ant-table {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 600;
+}
+
+/* Paragraphs and text */
+p, span, div, a, label, input, textarea, button {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
