@@ -25,7 +25,7 @@ const AdminJobList = ({ jobs, onManageJob, onCreateJob, showSuccessMessage, onCl
     const [searchQuery, setSearchQuery] = useState('');
 
     const formatSalary = (min: number, max: number) => {
-        return `Rp${(min / 1000000).toFixed(1)}.000.000 - Rp${(max / 1000000).toFixed(1)}.000.000`;
+        return `Rp ${(min / 1000000).toFixed(1)} - ${(max / 1000000).toFixed(1)} juta`;
     };
 
     const getStatusLabel = (status: string) => {
