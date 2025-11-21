@@ -1,9 +1,19 @@
 import { Modal, Button } from 'antd';
 import { CloseOutlined, RightOutlined, WarningOutlined } from '@ant-design/icons';
 import { useEffect, useRef, useState } from 'react';
-import type { Hands, Results } from '@mediapipe/hands';
-import type { Camera } from '@mediapipe/camera_utils';
 import './WebcamCapture.css';
+
+// Declare global MediaPipe types
+declare global {
+    interface Window {
+        Hands: any;
+        Camera: any;
+    }
+}
+
+type Results = any;
+type Hands = any;
+type Camera = any;
 
 interface Props {
     visible: boolean;
@@ -41,14 +51,16 @@ const WebcamCapture = ({ visible, onClose, onCapture }: Props) => {
         try {
             if (!videoRef.current) return;
 
-            // Dynamic import MediaPipe modules
-            const { Hands } = await import('@mediapipe/hands');
-            const { Camera } = await import('@mediapipe/camera_utils');
+            // Wait for MediaPipe to load from CDN
+            if (!window.Hands || !window.Camera) {
+                setError('MediaPipe library belum ter-load. Silakan refresh halaman.');
+                return;
+            }
 
-            // Initialize MediaPipe Hands
-            const hands = new Hands({
-                locateFile: (file) => {
-                    return `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4/${file}`;
+            // Initialize MediaPipe Hands using global window object
+            const hands = new window.Hands({
+                locateFile: (file: string) => {
+                    return `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1646424915/${file}`;
                 }
             });
 
@@ -62,8 +74,8 @@ const WebcamCapture = ({ visible, onClose, onCapture }: Props) => {
             hands.onResults(onHandsResults);
             handsRef.current = hands;
 
-            // Initialize Camera
-            const camera = new Camera(videoRef.current, {
+            // Initialize Camera using global window object
+            const camera = new window.Camera(videoRef.current, {
                 onFrame: async () => {
                     if (videoRef.current && handsRef.current) {
                         await handsRef.current.send({ image: videoRef.current });
