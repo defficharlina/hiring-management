@@ -78,13 +78,16 @@ npm run dev
 http://localhost:5173
 ```
 7. Login
+```
 Admin
 Email : admin@example.com
 Password : Admin123
-
+```
+```
 User
 Email : user@example.com
 Password : User1234
+```
 
 ### Available Scripts
 
